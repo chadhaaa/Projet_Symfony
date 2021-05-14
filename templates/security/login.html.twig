@@ -3,46 +3,81 @@
 {% block body %}
 <head>
 <link rel="stylesheet" href="css/styles.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css">
 </head>
 
 <form action="{{ path('security_login') }}" method = "post">
-    <div class="container px-4 py-5 mx-auto">
-        <div class="card card0">
-            <div class="d-flex flex-lg-row flex-column-reverse">
-                <div class="card card1">
-                    <div class="row justify-content-center my-auto">
-                        <div class="col-md-8 col-10 my-5">
-                            <div class="row justify-content-center px-3 mb-3"> <img id="logo" src="https://i.imgur.com/PSXxjNY.png"> </div>
-                            <h3 class="mb-5 text-center heading">NAARFSH CHNUWA NHOT LENA ZEDA</h3>
-                            <h6 class="msg-info">Please login to your account</h6>
-                            <div class="form-group"> 
-                                <label class="form-control-label text-muted">Email Address</label> 
-                                <input type="text" required name ="_username" placeholder="Email Address" class="form-control"> 
+    <div class="bg-info">
+    <!-- Container containing all contents -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <!-- White Container -->
+                <div class="container bg-white rounded mt-2 mb-2 px-0">
+                    <!-- Main Heading -->
+                    <div class="row justify-content-center align-items-center pt-3">
+                        <h1><strong>Login</strong></h1>
+                    </div>
+                    <div class="pt-3 pb-3">
+                        <form class="form-horizontal">
+                            <!-- Email Input -->
+                            <div class="form-group row justify-content-center px-3">
+                                <div class="col-9 px-0"> <input type="text" placeholder="Email Address" name = "_username" required class="form-control border-info placeicon"> </div>
+                            </div> <!-- Password Input -->
+                            <div class="form-group row justify-content-center px-3">
+                                <div class="col-9 px-0"> <input type="password" placeholder="Password" name ="_password" required class="form-control border-info placeicon"> </div>
+                            </div> <!-- CheckBox Remember Me-->
+                            <div class="form-group row justify-content-center px-3">
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-6 px-0">
+                                            <div class="custom-control custom-checkbox mb-3"> <input id="customCheck1" type="checkbox" class="custom-control-input checkbox-muted"> <label for="customCheck1" class="custom-control-label text-muted">Remember Me</label> </div>
+                                        </div> <!-- Forgot Password Link -->
+                                        <div class="col-6 px-0 text-right"> <span><a href="#" class="text-danger"><b>Forgot Password?</b></a></span> </div>
+                                    </div>
+                                </div>
+                            </div> <!-- Log in Button -->
+                            <div class="form-group row justify-content-center">
+                                <div class="col-3 px-3"> <input type="submit" value="Log in" class="btn btn-block btn-info"> </div>
                             </div>
-                            <div class="form-group"> 
-                                <label class="form-control-label text-muted">Password</label> 
-                                <input type="password" required name="_password" placeholder="Password" class="form-control"> 
+                        </form>
+                    </div> <!-- Alternative Login -->
+                    <div class="mx-0 px-0 bg-light">
+                        <div class="pt-4">
+                            <div class="row justify-content-center pt-3">
+                                <h3><strong>Login</strong></h3>
                             </div>
-                            <div class="row justify-content-center my-3 px-3"> 
-                                <button class="btn-block btn-color">Login to Your account ! </button> 
+                            <div class="row justify-content-center">
+                                <h5>With your social media account</h5>
+                            </div> <!-- Social Media Login buttons -->
+                            <div class="row justify-content-center pt-4">
+                                <div class="col-10">
+                                    <div class="row justify-content-center">
+                                        <!-- Twitter Connect -->
+                                        <div class="col-7 col-sm-4 px-1 pb-1"> <a href="#" class="btn btn-block btn-social btn-twitter"> <span class="fa fa-twitter"></span> Twitter </a> </div> <!-- Facebook Connect -->
+                                        <div class="col-7 col-sm-4 px-1 pb-1"> <a href="#" class="btn btn-block btn-social btn-facebook"> <span class="fa fa-facebook"></span> Facebook </a> </div> <!-- Google Connect -->
+                                        <div class="col-7 col-sm-4 px-1 pb-1"> <a href="#" class="btn btn-block btn-social btn-google"> <span class="fa fa-google-plus"></span> Google+ </a> </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row justify-content-center my-2">
-                                <a href="#"><small class="text-muted">Forgot Password?</small></a>
+                        </div> <!-- Horizontal Line -->
+                        <div class="px-4 pt-5">
+                            <hr>
+                        </div> <!-- Register Now -->
+                        <div class="pt-2">
+                            <div class="row justify-content-center">
+                                <h5>Don't have an Account?<span><a href="{{ path('security_register') }}" class="text-danger"> Register Now!</a></span></h5>
+                            </div>
+                            <div class="row justify-content-center align-items-center pt-4 pb-5">
+                                <div class="col-4"> <a href="{{ path('security_register') }}" class="btn btn-block btn-info"> REGISTER </a> </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="bottom text-center mb-5">
-                        <p href="{{ path('security_register') }}" class="sm-text mx-auto mb-3">Don't have an account?<button class="btn btn-white ml-2">Create new</button></p>
-                    </div>
-                </div>
-                <div class="card card2">
-                    <div class="my-auto mx-md-5 px-md-5 right">
-                        <h3 class="text-white">This is just a test ! </h3> <small class="text-white">Chwaya 5orm menish aarfa chnuwa besh n9oul bedhabt lehna lol.</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </form>
 	
 
