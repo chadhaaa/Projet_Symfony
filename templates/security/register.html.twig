@@ -1,15 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-<h1> Create an account ! </h1>
+<head>
+<link rel="stylesheet" href="css/styles.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css">
+</head>
 
 {{ form_start(form) }}
-{{ form_row(form.username, {'label': 'Username' ,'attr': {'placeholder': 'username'}}) }}
-{{ form_row(form.email, {'label': 'Email Address' ,'attr': {'placeholder': 'Email Address'}}) }}
-{{ form_row(form.password, {'label': 'Password' ,'attr': {'placeholder': 'Password'}}) }}
-{{ form_row(form.confirm_password, {'label': 'Confirm Password' ,'attr': {'placeholder': 'Confirm your Password'}}) }}
-<button type = "submit" class = "btn btn-success"> Register ! </button> 
+<div class="bg-info">
+    <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <!-- White Container -->
+                    <div class="container bg-white rounded mt-2 mb-2 px-0">
+                        <!-- Main Heading -->
+                        <div class="row justify-content-center align-items-center pt-3">
+                            <h1><strong>Register</strong></h1>
+                        </div>
+                        <div class="pt-3 pb-3">
+                            <form class="form-horizontal">
+                                <div class="form-group row justify-content-center px-3">
+                                    <div class="col-9 px-0"> {{ form_row(form.username, {'label': 'Username' ,'attr': {'placeholder': 'username'}}) }} </div>
+                                </div>
+
+                                <div class="form-group row justify-content-center px-3">
+                                    <div class="col-9 px-0"> {{ form_row(form.email, {'label': 'Email Address' ,'attr': {'placeholder': 'Email Address'}}) }} </div> 
+                                </div>
+                                <div class="form-group row justify-content-center px-3">
+                                    <div class="col-9 px-0"> {{ form_row(form.password, {'label': 'Password' ,'attr': {'placeholder': 'Password'}}) }} </div>
+                                </div>
+                                <div class="form-group row justify-content-center px-3">
+                                    <div class="col-9 px-0"> {{ form_row(form.confirm_password, {'label': 'Confirm Password' ,'attr': {'placeholder': 'Confirm your Password'}}) }} </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <div class="col-3 px-3"> <button type = "submit" class = "btn btn-success"> Register ! </button> </div>
+                                </div>
+
+                        <div class="px-4 pt-5">
+                            <hr>
+                        </div> <!-- Register Now -->
+                        <div class="pt-2">
+                            <div class="row justify-content-center">
+                                <h5>Already a member ? <span><a href="{{ path('security_login') }}" class="text-danger"> Login Now!</a></span></h5>
+                            </div>
+                            <div class="row justify-content-center align-items-center pt-4 pb-5">
+                                <div class="col-4"> <a href="{{ path('security_login') }}" class="btn btn-block btn-info"> Login Here !  </a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                             
 {{ form_end(form) }}
+
+
 
 {% endblock %}
