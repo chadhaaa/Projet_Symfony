@@ -17,4 +17,12 @@ class IndexController extends AbstractController
             'controller_name' => 'IndexController',
         ]);
     }
+
+    /**
+     * @Route("/", name = "first_page")
+     */
+    public function welcome(): Response
+    {
+        return $this->render('security/welcome.html.twig'); 
+    }
 }
