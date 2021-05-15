@@ -28,9 +28,9 @@ class Offer
     private $salaire;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
-    private $etat;
+    private $disponibility;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,6 +41,16 @@ class Offer
      * @ORM\Column(type="string", length=255)
      */
     private $recruteur;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $location;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -71,14 +81,14 @@ class Offer
         return $this;
     }
 
-    public function getEtat(): ?bool
+    public function getDisponibility(): ?string
     {
-        return $this->etat;
+        return $this->disponibility;
     }
 
-    public function setEtat(bool $etat): self
+    public function setDisponibility(string $disponibility): self
     {
-        $this->etat = $etat;
+        $this->disponibility = $disponibility;
 
         return $this;
     }
@@ -103,6 +113,30 @@ class Offer
     public function setRecruteur(string $recruteur): self
     {
         $this->recruteur = $recruteur;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

@@ -19,6 +19,7 @@
                         </div>
                         <div class="pt-3 pb-3">
                             <form class="form-horizontal">
+                            {{ form_row(form._token) }}
                                 <div class="form-group row justify-content-center px-3">
                                     <div class="col-9 px-0"> {{ form_row(form.username, {'label': 'Username' ,'attr': {'placeholder': 'username'}}) }} </div>
                                 </div>
