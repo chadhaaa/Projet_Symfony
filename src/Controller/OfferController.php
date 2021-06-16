@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\Offer; 
 use App\Form\OfferType;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-
+use App\Entity\Category;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OfferController extends AbstractController
 {
@@ -33,13 +34,15 @@ class OfferController extends AbstractController
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $category = new Category(); 
         $offer = new Offer();
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-        
+            
+            //$entityManager->persist($category); 
             $entityManager->persist($offer);
             $entityManager->flush();
 
@@ -47,8 +50,9 @@ class OfferController extends AbstractController
         }
 
         return $this->render('offer/new.html.twig', [
+            'category' => $category,
             'offer' => $offer,
-            'form' => $form->createView(),
+            'form' => $form->createView(), 
         ]);
     }
 

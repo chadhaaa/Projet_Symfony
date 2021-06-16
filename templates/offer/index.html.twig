@@ -29,6 +29,7 @@
           <th>Disponibility</th>
           <th>Place</th>
           <th>Created At</th>
+          <th>Category</th>
           <th>Actions</th> 
         </tr>
       </thead>
@@ -45,7 +46,8 @@
           <td>{{offer.salaire}}</td>
           <td>{{offer.disponibility}}</td>
           <td>{{offer.location}}</td>
-          <td>{{offer.createdAt|date}}</td>
+          <td>{{offer.createdAt|date()}}</td>
+          
           <td>
           <a href="{{ path('offer_show', {'id': offer.id}) }}" class="btn btn-outline-dark">Show</a>
           <a href="{{ path('offer_edit', {'id': offer.id}) }}" class="btn btn-outline-warning">Edit</a> 

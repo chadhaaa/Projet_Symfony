@@ -75,14 +75,14 @@ class CategoryController extends AbstractController
      */
     public function show($id): Response
     {
-        $offer = $this->getDoctrine()->getRepository(Category::class)->find($id);
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
         return $this->render('category/show.html.twig', [
             'category' => $category,
         ]);
     }
 
     /**
-     * @Route("/{id}/", name="category_delete", methods={"DELETE"})
+     * @Route("/delete/{id}/", name="category_delete", methods={"DELETE"})
      */
     public function delete(Request $request, $id) {
         
