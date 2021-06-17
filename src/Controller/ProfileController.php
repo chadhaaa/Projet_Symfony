@@ -23,7 +23,9 @@ class ProfileController extends AbstractController
      */
     public function index(UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
-        $users = $entityManager->getRepository(User::class)->findAll(); 
+        $users = $entityManager->getRepository(User::class)->findAll();
+        //$this->denyAccessUnlessGranted('ROLE_CANDIDAT'); 
+        //$users->setRoles(array('ROLE_CANDIDAT'));
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'users' => $users

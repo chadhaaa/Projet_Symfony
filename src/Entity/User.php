@@ -152,9 +152,10 @@ class User implements UserInterface
 
     public function getSalt(){}
 
+        
     public function getRoles()
     {
-        return ['ROLE_USER']; 
+        return ['ROLE_CANDIDAT'];
     }
 
     /**
@@ -276,10 +277,23 @@ class User implements UserInterface
 
         return $this->job;
     }
-
-    public function setRoles(string $Roles): self
+    public function setRoles(?string $Roles)
     {
+
         $this->Roles = $Roles;
         return $this->Roles;
+
+        $this->Roles = $Roles; 
+        return $this; 
+    }
+
+    public function addRoles(string $Roles): self 
+    {
+        if (is_array($this->Roles)) {
+            if (!in_array($Roles, $this->Roles, true)) {
+                $this->Roles[] = $Roles;
+            }
+        }
+        return $this;
     }
 }

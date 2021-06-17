@@ -1,0 +1,6 @@
+2.3e *** ligne 3  *** ATTENTION : exposant attendu !!! 
+ 
+"ah ah chaine non terminee  *** ligne 6  *** ATTENTION : fin de chaine attendue !!! 
+ 
+-t *** ligne 7  *** ATTENTION : nombre attendu !!! 
+ 
