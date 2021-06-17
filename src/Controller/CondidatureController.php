@@ -13,12 +13,16 @@ use App\Form\CondidatureType;
 
 class CondidatureController extends AbstractController
 {
+    //cette fonction permet à l'utilisateur de voir ses condidatures
     /**
      * @Route("/condidature", name="condidature", methods={"GET","POST"})
      */
     public function index(): Response
-    {   $entityManager = $this->getDoctrine()->getManager();
-        $condidatures = $entityManager->getRepository(Condidature::class)->findAll(); 
+    {   
+        $user= $this->getUser()->getId();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Condidature::class);
+        $condidatures = $repository->findBy(array('idUser'=> $user));
 
         return $this->render('condidature/mescondidatures.html.twig', ['condidatures' =>$condidatures]
             
@@ -28,7 +32,9 @@ class CondidatureController extends AbstractController
      * @Route("/condidature/create/{offer}", name="condidature-create", methods={"GET","POST"})
      */
     public function new(Request $request, $offer): Response
-    {   $condidature = new Condidature();
+    {
+        $user = $this->getUser();
+        $condidature = new Condidature();
         $form = $this->createForm(CondidatureType::class, $condidature);
         $form->handleRequest($request);
         
@@ -56,6 +62,7 @@ class CondidatureController extends AbstractController
             $condidature->setEtat("not checked");
             $choffer = $entityManager->getRepository(Offer::class)->find($offer);
             $condidature->setIdOffer($choffer);
+            $condidature->setIdUser($user);
             $condidature->setCreatedAt(new \DateTime('now'));
             $entityManager->persist($condidature);
             $entityManager->flush();
@@ -115,7 +122,7 @@ class CondidatureController extends AbstractController
      */
     public function delete($id) {
             $entityManager = $this->getDoctrine()->getManager();
-            $condidature = $entityManager->getRepository(condidature::class)->find($id);
+            $condidature = $entityManager->getRepository(Condidature::class)->find($id);
             $entityManager->remove($condidature);
             $entityManager->flush();
     
@@ -135,7 +142,7 @@ class CondidatureController extends AbstractController
      */
     public function reject($id){
         $entityManager = $this->getDoctrine()->getManager();
-        $condidature = $entityManager->getRepository(condidature::class)->find($id);
+        $condidature = $entityManager->getRepository(Condidature::class)->find($id);
         $condidature->setEtat("rejected");
         $entityManager->persist($condidature);
         $entityManager->flush();
@@ -146,7 +153,7 @@ class CondidatureController extends AbstractController
      */
     public function accept($id){
         $entityManager = $this->getDoctrine()->getManager();
-        $condidature = $entityManager->getRepository(condidature::class)->find($id);
+        $condidature = $entityManager->getRepository(Condidature::class)->find($id);
         $condidature->setEtat("accepted");
         $entityManager->persist($condidature);
         $entityManager->flush();

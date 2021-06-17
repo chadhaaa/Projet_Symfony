@@ -48,10 +48,16 @@
           <td>{{offer.createdAt|date("m/d/Y")}}</td>
           
           <td>
+          {% if is_granted('ROLE_RECRUTEUR') %}
           <a href="{{ path('offer_show', {'id': offer.id}) }}" class="btn btn-outline-dark">Show</a>
           <a href="{{ path('offer_edit', {'id': offer.id}) }}" class="btn btn-outline-warning">Edit</a> 
-          <a href="{{ path('condidature-create', {'offer': offer.id}) }}" class="btn btn-outline-warning">postuler</a> 
           {{ include('offer/_delete_form.html.twig') }}
+          {% endif %}
+          {% if is_granted('ROLE_CANDIDAT') %}
+          <a href="{{ path('condidature-create', {'offer': offer.id}) }}" class="btn btn-outline-warning">postuler</a>
+          {% endif %}
+           
+          
           </td>
         </tr>
         {% else %} 

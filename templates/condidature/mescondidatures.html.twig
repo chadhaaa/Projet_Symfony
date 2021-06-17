@@ -40,14 +40,17 @@
           <td><a href="uploads/cv/{{condidature.cv}}">cv</a> </td>
         
           <td>
-          <a href="{{ path('condidature-edit', {'id': condidature.id}) }}" class="btn btn-secondary">modifier</a>
+           {% if is_granted('ROLE_CANDIDAT') %}
+            <a href="{{ path('condidature-edit', {'id': condidature.id}) }}" class="btn btn-secondary">modifier</a>
           <a href="{{ path('condidature-delete', {'id': condidature.id}) }}" class="btn btn-secondary">supprimer</a>
+          {% endif %}
+          {% if is_granted('ROLE_ADMIN') %}
           {% if condidature.etat =="rejected" %}
           <a href="{{ path('condidature-accept', {'id': condidature.id}) }}" class="btn btn-secondary">accepter</a>
           {% else %}
               <a href="{{ path('condidature-reject', {'id': condidature.id}) }}" class="btn btn-secondary">rejecter</a>
           {% endif %}
-          
+          {% endif %}
           
           </td>
         </tr>

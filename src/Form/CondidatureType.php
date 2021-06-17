@@ -21,13 +21,7 @@ class CondidatureType extends AbstractType
         $builder
             ->add('cv', FileType::class, array('data_class' => null))
             ->add('lettremotivation',TextareaType::class)
-            ->add('etat', ChoiceType::class, [
-                'choices' => [
-                    'rejected' => 'rejected',
-                    'accepted' => 'accepted', 
-                    'not checked' => 'not checked'
-                    ], 
-                ])
+        
            
         ;
     }
