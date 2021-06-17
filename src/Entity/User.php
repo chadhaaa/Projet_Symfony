@@ -90,9 +90,9 @@ class User implements UserInterface
     private $job;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="json")
      */
-    private $Roles; 
+    private $Roles = array(); 
 
     public function getId(): ?int
     {
@@ -139,9 +139,10 @@ class User implements UserInterface
 
     public function getSalt(){}
 
-    public function getRoles()
+        
+    public function getRoles(): array
     {
-        return ['ROLE_USER']; 
+        return array($this->Roles);  
     }
 
     public function getEtablissment(): ?string
@@ -239,11 +240,20 @@ class User implements UserInterface
 
         return $this;
     }
-
-    public function setRoles(string $Roles): self
+    public function setRoles()
     {
-        $this->Roles = $Roles;
-
-        return $this;
+        $this->Roles = $Roles; 
+        return $this; 
     }
+
+    public function addRoles(string $Roles): self 
+    {
+        if (is_array($this->Roles)) {
+            if (!in_array($role, $this->Roles, true)) {
+                $this->Roles[] = $role;
+            }
+        }
+
+    }
+
 }
