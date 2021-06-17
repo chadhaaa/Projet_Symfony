@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OfferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,16 @@ class Offer
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Condidature::class, mappedBy="idOffer")
+     */
+    private $idUser;
+
+    public function __construct()
+    {
+        $this->idUser = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,5 +151,41 @@ class Offer
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Condidature[]
+     */
+    public function getcondidature(): Collection
+    {
+        return $this->condidature;
+    }
+
+    public function addcondidature(Condidature $condidature): self
+    {
+        if (!$this->condidature->contains($condidature)) {
+            $this->condidature[] = $condidature;
+            $condidature->setIdOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removecondidature(Condidature $condidature): self
+    {
+        if ($this->condidature->removeElement($condidature)) {
+            // set the owning side to null (unless already changed)
+            if ($condidature->getIdOffer() === $this) {
+                $condidature->setIdOffer(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->title;
+        // to show the id of the Category in the select
+        // return $this->id;
     }
 }

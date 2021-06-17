@@ -1,0 +1,57 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Mes condidatures {% endblock %}
+
+{% block body %}
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"> 
+<link rel="stylesheet" href="css/table.css"> 
+</head>
+
+<section>
+  <!--for demo wrap-->
+  
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Offre</th>
+          <Th> société </th>
+          <th>Lettre de motivation</th>
+          <th>Etat</th>
+          <th> cv </th>
+          <th>Actions</th> 
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+      {% for condidature in condidatures %}
+        <tr>
+          <td>{{condidature.idOffer.title}} </td>
+          <td> {{condidature.idOffer.recruteur}}</td>
+          <td>{{condidature.lettremotivation}}</td>
+          <td>{{condidature.etat}} </td>
+          <td><a href="uploads/cv/{{condidature.cv}}">cv</a> </td>
+        
+          <td>
+          <a href="{{ path('condidature-edit', {'id': condidature.id}) }}" class="btn btn-secondary">modifier</a>
+          <a href="{{ path('condidature-delete', {'id': condidature.id}) }}" class="btn btn-secondary">supprimer</a>
+          </td>
+        </tr>
+        {% else %} 
+        <tr>
+                <td colspan="5">no condidatures found</td>
+            </tr>
+        {% endfor %}
+      
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

@@ -20,8 +20,8 @@ final class Version20210515155354 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE offer ALTER disponibility TYPE VARCHAR(255)');
-        $this->addSql('ALTER TABLE offer ALTER disponibility DROP DEFAULT');
+        //$this->addSql('ALTER TABLE offer ALTER disponibility TYPE VARCHAR(255)');
+        //$this->addSql('ALTER TABLE offer ALTER disponibility DROP DEFAULT');
     }
 
     public function down(Schema $schema): void
