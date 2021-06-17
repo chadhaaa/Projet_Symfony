@@ -87,7 +87,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $job; 
+    private $job;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Roles; 
 
     public function getId(): ?int
     {
@@ -231,6 +236,13 @@ class User implements UserInterface
     public function setJob(?string $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    public function setRoles(string $Roles): self
+    {
+        $this->Roles = $Roles;
 
         return $this;
     }
