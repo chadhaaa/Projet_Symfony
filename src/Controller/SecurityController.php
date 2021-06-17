@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class SecurityController extends AbstractController
 {
@@ -35,7 +36,9 @@ class SecurityController extends AbstractController
             $entity->persist($user); 
             $entity->flush(); 
 
-            return $this->redirectToRoute('security_login'); 
+            return $this->redirectToRoute('security_login', [
+                'id' => $user->getId()
+            ]); 
         }
 
         return $this->render('security/register.html.twig', [
@@ -49,6 +52,7 @@ class SecurityController extends AbstractController
      */
     public function login()
     {
+    
         return $this->render('security/login.html.twig'); 
     }
 

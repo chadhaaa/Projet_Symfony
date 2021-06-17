@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche des candidats{% endblock %}
+
+{% block body %}
+    {% for job in jobs %}
+        {{ app.user.username }}
+    {% endfor %}
+{% endblock %}

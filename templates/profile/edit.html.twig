@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Update Your Profile {% endblock %}
+
+{% block body %}
+
+    {{ include('profile/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('profile') }}">back to your profile</a>
+{% endblock %}
