@@ -47,6 +47,11 @@ class Condidature
      */
     private $lettremotivation;
 
+    /**
+     * @ORM\OneToOne(targetEntity=RendezVous::class, mappedBy="condidature", cascade={"persist", "remove"})
+     */
+    private $rendezvous;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,6 +131,28 @@ class Condidature
     public function setLettremotivation(?string $lettremotivation): self
     {
         $this->lettremotivation = $lettremotivation;
+
+        return $this;
+    }
+
+    public function getRendezvous(): ?RendezVous
+    {
+        return $this->rendezvous;
+    }
+
+    public function setRendezvous(?RendezVous $rendezvous): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($rendezvous === null && $this->rendezvous !== null) {
+            $this->rendezvous->setCondidature(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($rendezvous !== null && $rendezvous->getCondidature() !== $this) {
+            $rendezvous->setCondidature($this);
+        }
+
+        $this->rendezvous = $rendezvous;
 
         return $this;
     }

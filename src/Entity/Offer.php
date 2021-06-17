@@ -189,6 +189,6 @@ class Offer
         // to show the id of the Category in the select
         // return $this->id;
     }
-}
+
 
 }

@@ -130,6 +130,27 @@ class CondidatureController extends AbstractController
         // uniqid(), which is based on timestamps
         return md5(uniqid());
     }
- 
+    /**
+     * @Route("/condidature/reject/{id}", name="condidature-reject", methods={"GET","POST"}))
+     */
+    public function reject($id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $condidature = $entityManager->getRepository(condidature::class)->find($id);
+        $condidature->setEtat("rejected");
+        $entityManager->persist($condidature);
+        $entityManager->flush();
+        return $this->redirectToRoute('condidature');
+    }
+    /**
+     * @Route("/condidature/accept/{id}", name="condidature-accept", methods={"GET","POST"}))
+     */
+    public function accept($id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $condidature = $entityManager->getRepository(condidature::class)->find($id);
+        $condidature->setEtat("accepted");
+        $entityManager->persist($condidature);
+        $entityManager->flush();
+        return $this->redirectToRoute('rendez-vous',['condidature'=>$condidature]);
+    }
 
 }

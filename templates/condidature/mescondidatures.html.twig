@@ -42,6 +42,13 @@
           <td>
           <a href="{{ path('condidature-edit', {'id': condidature.id}) }}" class="btn btn-secondary">modifier</a>
           <a href="{{ path('condidature-delete', {'id': condidature.id}) }}" class="btn btn-secondary">supprimer</a>
+          {% if condidature.etat =="rejected" %}
+          <a href="{{ path('condidature-accept', {'id': condidature.id}) }}" class="btn btn-secondary">accepter</a>
+          {% else %}
+              <a href="{{ path('condidature-reject', {'id': condidature.id}) }}" class="btn btn-secondary">rejecter</a>
+          {% endif %}
+          
+          
           </td>
         </tr>
         {% else %} 

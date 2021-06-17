@@ -105,7 +105,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Roles; 
->>>>>>> 66c610a8eb9287c7e0f416e3a5a10374f38849b5
+
 
     public function getId(): ?int
     {
@@ -171,6 +171,7 @@ class User implements UserInterface
             $this->condidatures[] = $condidature;
             $condidature->setIdUser($this);
         }
+    }
     public function getEtablissment(): ?string
     {
         return $this->etablissment;
@@ -179,8 +180,6 @@ class User implements UserInterface
     public function setEtablissment(?string $etablissment): self
     {
         $this->etablissment = $etablissment;
-
-
         return $this;
     }
 
@@ -193,7 +192,7 @@ class User implements UserInterface
                 $condidature->setIdUser(null);
             }
         }
-
+    }
     public function getDiplome(): ?string
     {
         return $this->diplome;
@@ -275,14 +274,12 @@ class User implements UserInterface
     {
         $this->job = $job;
 
-        return $this;
+        return $this->job;
     }
 
     public function setRoles(string $Roles): self
     {
         $this->Roles = $Roles;
-
-
-        return $this;
+        return $this->Roles;
     }
 }
