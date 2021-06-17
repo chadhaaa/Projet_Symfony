@@ -49,7 +49,7 @@ class ListController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->find($user);
         $form = $this->createForm(ListType::class, $user);
         $form->handleRequest($request);
-
+        //$form->setRoles(array('ROLE_CANDIDAT'));
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 

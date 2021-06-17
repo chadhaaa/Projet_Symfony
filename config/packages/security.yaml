@@ -38,3 +38,4 @@ security:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profile, roles: ROLE_CANDIDAT }
          #- { path: ^/profile, roles: ROLE_RECRUTEUR }
+    role_hierarchy:

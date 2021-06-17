@@ -102,10 +102,10 @@ class User implements UserInterface
     private $job;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Roles; 
->>>>>>> 7380900f08c5070a48165019f73db3526e61830a
+
 
     public function getId(): ?int
     {
@@ -153,9 +153,9 @@ class User implements UserInterface
     public function getSalt(){}
 
         
-    public function getRoles(): array
+    public function getRoles()
     {
-        return array($this->Roles);  
+        return ['ROLE_CANDIDAT'];
     }
 
     /**
@@ -172,6 +172,7 @@ class User implements UserInterface
             $this->condidatures[] = $condidature;
             $condidature->setIdUser($this);
         }
+    }
     public function getEtablissment(): ?string
     {
         return $this->etablissment;
@@ -194,7 +195,7 @@ class User implements UserInterface
                 $condidature->setIdUser(null);
             }
         }
-
+    }
     public function getDiplome(): ?string
     {
         return $this->diplome;
@@ -278,7 +279,7 @@ class User implements UserInterface
 
         return $this;
     }
-    public function setRoles()
+    public function setRoles(?string $Roles)
     {
         $this->Roles = $Roles; 
         return $this; 
@@ -287,13 +288,10 @@ class User implements UserInterface
     public function addRoles(string $Roles): self 
     {
         if (is_array($this->Roles)) {
-            if (!in_array($role, $this->Roles, true)) {
-                $this->Roles[] = $role;
+            if (!in_array($Roles, $this->Roles, true)) {
+                $this->Roles[] = $Roles;
             }
         }
-
-
         return $this;
     }
-
 }
