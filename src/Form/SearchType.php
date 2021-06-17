@@ -12,17 +12,7 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
             ->add('username')
-            ->add('password')
-            ->add('etablissment')
-            ->add('diplome')
-            ->add('experience')
-            ->add('dateNaissance')
-            ->add('phone')
-            ->add('skills')
-            ->add('work')
-            ->add('job')
         ;
     }
 
