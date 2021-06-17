@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 
@@ -50,6 +52,16 @@ class User implements UserInterface
     public $confirm_password;
 
     /**
+
+     * @ORM\OneToMany(targetEntity=Condidature::class, mappedBy="idUser")
+     */
+    private $condidatures;
+
+    public function __construct()
+    {
+        $this->condidatures = new ArrayCollection();
+    } 
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $etablissment;
@@ -92,7 +104,8 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $Roles = array(); 
+    private $Roles; 
+>>>>>>> 7380900f08c5070a48165019f73db3526e61830a
 
     public function getId(): ?int
     {
@@ -145,6 +158,20 @@ class User implements UserInterface
         return array($this->Roles);  
     }
 
+    /**
+     * @return Collection|Condidature[]
+     */
+    public function getCondidatures(): Collection
+    {
+        return $this->condidatures;
+    }
+
+    public function addCondidature(Condidature $condidature): self
+    {
+        if (!$this->condidatures->contains($condidature)) {
+            $this->condidatures[] = $condidature;
+            $condidature->setIdUser($this);
+        }
     public function getEtablissment(): ?string
     {
         return $this->etablissment;
@@ -154,8 +181,19 @@ class User implements UserInterface
     {
         $this->etablissment = $etablissment;
 
+
         return $this;
     }
+
+
+    public function removeCondidature(Condidature $condidature): self
+    {
+        if ($this->condidatures->removeElement($condidature)) {
+            // set the owning side to null (unless already changed)
+            if ($condidature->getIdUser() === $this) {
+                $condidature->setIdUser(null);
+            }
+        }
 
     public function getDiplome(): ?string
     {
@@ -254,6 +292,8 @@ class User implements UserInterface
             }
         }
 
+
+        return $this;
     }
 
 }
