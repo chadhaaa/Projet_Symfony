@@ -32,7 +32,7 @@ class OfferType extends AbstractType
                     'Hybride' => 'Hybride', 
                 ], 
             ])
-            ->add('createdAt')
+            //->add('createdAt')
         
                 
           
